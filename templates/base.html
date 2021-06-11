@@ -1,13 +1,42 @@
+{% load static %}
+{% load bootstrap4 %}
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bt real Estate</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- CSS CUSTOM -->
+  <link rel='stylesheet' href="{% static 'css/styles.css' %}">
+  <!-- font awesome  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">  
+  <title>FM real estate {% block title %} {% endblock %}</title>
 </head>
+
 <body>
-    {% block content%}
-    {% endblock%}
+  <!-- navbar -->
+  {% include 'partials/_navbar.html' %}
+
+  <!-- messages component -->
+  {% include 'partials/_messages.html' %}
+
+  {% block content %} 
+  
+  
+  
+  {% endblock %}
+
+  <!-- footer -->
+  {% include 'partials/_footer.html' %}
+
+  <!-- main js file  -->
+  <script src="{% static 'js/main.js'%}"></script>
+  <script src="{% static 'js/jquery-3.3.1.min.js' %} "></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %} "></script>
 </body>
+
 </html>

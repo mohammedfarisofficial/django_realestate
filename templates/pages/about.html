@@ -1,4 +1,93 @@
 {% extends 'base.html'%}
+{% block title  %} > about us{% endblock%}
 {% block content%}
-    <h2>about page</h2>
+{% load static %}
+<div class="about-section">
+    <div class="common-landing">
+        <div class="cmnlndg-text-container">
+            <h2>About FM real estate</h2>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi, in!</p>
+        </div>
+    </div>
+    <div class="about-top-section">
+        <div class="about-top-details-section">
+            <div class="about-text-container">
+                <h2>We search for the perfect home</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+            <div class="about-image-container">
+                <img src="{% static 'img/background2.jpg'%}" alt="about-home-img">
+            </div>
+        </div>
+        <div class="about-top-realtor-section">
+            <div class="about-realtor-container">
+                <div class="about-realtor-mvp-title-section"></div>
+                <div class="realtor-container">
+                    {% if mvp_realtors %}
+                        {% for realtor in mvp_realtors %}
+                            <div class="realtor-photo">
+                                <img src="{{ realtor.photo.url }}" alt="">
+                            </div>
+                            <div class="realtor-details">
+                                <div><h5>{{ realtor.name }}</h5></div>
+                                <div id="realtor-icon">
+                                    <img src="{% static 'img/realtor-icons/checked.svg' %}" alt="">
+                                    <h6>Realtor</h6>
+                                </div>
+                                <div id="realtor-pe">
+                                    <p>91+ {{ realtor.phone }}</p>
+                                    <p>{{ realtor.email }}</p>
+                                </div>
+                            </div>
+                        {% endfor%}
+                    {% else%}
+                            <h2>not available</h2>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="about-middle-section">
+        <h2>We work for you</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus a et soluta aperiam recusandae maxime ab esse laborum adipisci minus!</p>
+        <a href="{% url 'listings' %}">
+            <button type="button">View our featured property</button>
+        </a>
+    </div>
+    <div class="about-bottom-section">
+        <div class="about-bottom-top-section">
+            <div class="about-bottom-title">
+                <h2>Our team</h2>
+            </div>
+        </div>
+        <div class="about-bottom-bottom-section">
+            <div class="about-bottom-realtor-container">
+                
+                    {% if realtors %}
+                        {% for realtor in realtors %}
+                        <div class="realtor-container">
+                                <div class="realtor-photo">
+                                    <img src="{{ realtor.photo.url }}" alt="{{ realtor.name }}">
+                                </div>
+                                <div class="realtor-details">
+                                    <div><h5>{{ realtor.name }}</h5></div>
+                                    <div id="realtor-icon">
+                                        <img src="{% static 'img/realtor-icons/checked.svg' %}" alt="">
+                                        <h6>Realtor</h6>
+                                    </div>
+                                    <div id="realtor-pe">
+                                        <p>91+ {{ realtor.phone }}</p>
+                                        <p>{{ realtor.email }}</p>
+                                    </div>
+                                </div>
+                        </div>
+                        {% endfor%}
+                    {% else %}
+                            <h2>no realtors available</h2>
+                    {% endif%}
+                
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

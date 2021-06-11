@@ -1,0 +1,32 @@
+{% load static %}
+
+
+<div class="footer">
+        <div class="footer-top-section">
+                <div class="footer-top-left">
+                        <div class="footer-top-left-links">
+                                <a href="#">About Us</a>
+                                <a href="#">Contact Us</a>
+                                <a href="{% url 'login' %}">Login</a>
+                                <a href="{% url 'register' %}">Create</a>
+                        </div>
+                        <div class="footer-top-left-text">
+                                <h5>Designed and developed by Mohammed Faris.</h5>
+                        </div>
+                </div>
+                <div class="footer-top-right">
+                        <a href="https://github.com/mohammedfarisofficial">
+                                <img src="{% static 'img/social-icons/github.svg' %}" alt="github">
+                        </a>
+                        <a href="https://www.instagram.com/_thefm/">
+                                <img src="{% static 'img/social-icons/instagram.svg' %}" alt="instagram">
+                        </a>
+                        <a href="https://www.linkedin.com/in/mohammed-faris-0782641b0/">
+                                <img src="{% static 'img/social-icons/linkedin.svg' %}" alt="linkedin">
+                        </a>
+                </div>
+        </div>
+        <div class="footer-bottom-section">
+                <h5>Copyright&copy;<span class="year">2021</span> FM real estate</h5>
+        </div>
+</div>

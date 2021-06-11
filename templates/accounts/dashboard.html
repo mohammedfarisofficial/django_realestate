@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %} | dashboard {% endblock%}
+{% block content %}
+    <div class="dashboard-container">
+        <div class="dashboard-table">
+            {% if contacts %}
+                <table>
+                    <tr>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>property</th>
+                        <th>email</th>
+                        <th>date</th>
+                        <th>view</th>
+                    </tr>
+                    {% for contact in contacts %}
+                        <tr>
+                            <td>{{ contact.id }}</td>
+                            <td>{{ contact.name }}</td>
+                            <td>{{ contact.listing }}</td>
+                            <td>{{ contact.email }}</td>
+                            <td>{{ contact.contact_date }}</td>
+                            <td>
+                                <a href="{% url 'listing' contact.listing_id %}">
+                                    <button type="button">view</button>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <div class="empty-dashboard">
+                    <h2>Empty dashboard</h2>
+                </div>
+            {% endif%}
+        </div>
+    </div>
+{% endblock%}

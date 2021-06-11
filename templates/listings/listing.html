@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block title  %} | {{ listing.title }}{% endblock%}
+{% block content %}
+{% load static %}
+{% load humanize %}
+
+    <div class="single-listing-container">
+        <div id='make-inquiry' class="make-inquiry inquiry-hide">
+            <div class="make-inquiry-container">
+                <div id="close-btn">&times;</div>
+            <div class="make-inquiry-title">
+                <h3>make an inquiry</h3>
+            </div>
+            <div class="make-inquiry-input">
+                <form action="{% url 'contact' %}" method="POST">
+                    {% csrf_token %}
+                        {% if user.is_authenticated %}
+                            <input type="hidden" name="user_id" value="{{ user.id}}">
+                        {% else %}
+                            <input type="hidden" name="user_id" value="0">
+                        {% endif %}
+                        <input type="hidden" name="realtor_email" value="{{ listing.realtor.email}}">
+                        <input type="hidden" name="listing_id" value="{{ listing.id}}">
+                    <div class="ac-input-container">
+                        <input required autocomplete="off" name='listing' type="text" value="{{ listing.title}}">
+                        <label for="property">Property</label>
+                    </div>
+                    <div class="ac-input-container">
+                        <input required autocomplete="off" name='name' type="text" {% if user.is_authenticated %} value="{{ user.first_name }} {{ user.last_name}}"  {% endif%}>
+                        <label for="name">Name</label>
+                    </div>
+                    <div class="ac-input-container">
+                        <input required autocomplete="off" name='email' type="email" {% if user.is_authenticated %} value="{{ user.email }}"  {% endif%} >
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="ac-input-container">
+                        <input required autocomplete="off" type="text" name="phone" id="phone">
+                        <label for="Phone">Phone</label>
+                    </div>
+                    <div class="ac-input-container">
+                        <input required autocomplete="off" name='message' type="text">
+                        <label for="message">Message </label>
+                    </div>
+                    <div id="make-inquiry-smt-btn-container">
+                        <button type="submit">send</button>
+                    </div>
+                </form>
+            </div>
+            </div>
+        </div>
+        <div class="top-section">
+            
+            <h2>{{ listing.title }}</h2>
+            <h4>{{ listing.city }}, {{ listing.state}}, {{ listing.zipcode }}</h4>
+        </div>
+        <div class="bottom-section">
+            <div class="single-listing-list-section">
+                <div class="image-section">
+                    <div class="main-image-container">
+                        <img src="{{ listing.photo_main.url }}" alt="" >
+                    </div>
+                    <div class="sub-images-container">
+                        <div>
+                            <img class="lightbox-img" src="{% static 'img/example.jpg' %}" alt="" >
+                        </div>
+                        <div>
+                            <img class="lightbox-img" src="{% static 'img/example.jpg' %}" alt="" >
+                        </div>
+                        <div>
+                            <img class="lightbox-img" src="{% static 'img/example.jpg' %}" alt="" >
+                        </div>
+                        <div>
+                            <img class="lightbox-img" src="{% static 'img/example.jpg' %}" alt="" >
+                        </div>
+                        <div>
+                            <img class="lightbox-img" src="{% static 'img/example.jpg' %}" alt="" >
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="details-section">
+                    <div class="list-container">
+                        <div class="title-section">
+                            <h5 class="listing-title">{{ listing.title}}</h5>
+                            <h5>Rs.{{ listing.price | intcomma }}</h2>
+                            <h5 class="listing-sub-title">{{ listing.city}}, {{ listing.state}},{{ listing.zipcode }}</h5>
+                        </div>
+                        <div class="advantages-section">
+                            <div>
+                                <img src="{% static './img/avg-icons/sqft.svg' %}" alt="sqft icon">
+                                <h5>sqft: {{ listing.sqft}}</h5>
+                            </div>
+                            <div>
+                                <img src="{% static './img/avg-icons/garage.svg' %}" alt="garage icon">
+                                <h5>garage: {{ listing.garage }}</h5>
+                            </div>
+                            <div>
+                                <img src="{% static './img/avg-icons/bedrooms.svg' %}" alt="bedrooms icon">
+                                <h5>bedrooms: {{ listing.bedrooms }}</h5>
+                            </div>
+                            <div>
+                                <img src="{% static './img/avg-icons/bathrooms.svg' %}" alt="bathrooms icon">
+                                <h5>bathrooms: {{listing.bathrooms}}</h5>
+                            </div>
+                        </div>
+                        <div class="owner-section">
+                            <div>
+                                <img src="{% static 'img/owr-icons/user.svg' %}" alt="">
+                                <h5>{{ listing.realtor }}</h5>
+                            </div>
+                            <div>
+                                <img src="{% static 'img/owr-icons/time.svg' %}" alt="">
+                                <h5>{{ listing.list_date | timesince }}</h5>
+                            </div>
+                        </div>
+                        <div class="button-section">
+                            <button id="make-inquiry-smt-btn" type="button">make an inquiry</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="single-listing-realtor-section">
+                <div class="realtor-container">
+                    <div class="realtor-image-container">
+                        <img src="{{ listing.realtor.photo.url }}" alt="">
+                    </div>
+                    <div class="realtor-details-container">
+                        <h2>{{ listing.realtor}}</h2>
+                        <p>hi{{ listing.realtor.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

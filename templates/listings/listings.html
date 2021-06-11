@@ -1,0 +1,99 @@
+{%extends 'base.html'%}
+{% load static %}
+{% load humanize %}
+{% block title %} | browse property {% endblock%}
+{% block content %}
+
+    <div class="listing-container">
+        <div class="common-landing">
+            <div class="cmnlndg-text-container">
+                <h2>Explore estate</h2>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi, in!</p>
+            </div>
+        </div>
+        <div class="list-section browse">
+            <ul class='grid-listing'>
+                {% if listings %}
+                    {% for listing in listings%}
+                    <li>
+                        <div class="list-container">
+                            <div class="title-section">
+                                <div class="big-price">
+                                    <h2>Rs.{{ listing.price | intcomma }}</h2>
+                                </div>
+                                <div class="image"><img src="{{ listing.photo_main.url}}" alt="btre"></div>
+                                <h5 class="listing-title">{{ listing.title}}</h5>
+                                <h5 class="listing-sub-title">{{ listing.city}}, {{ listing.state}},{{ listing.zipcode }}</h5>
+                            </div>
+                            <div class="advantages-section">
+                                <div>
+                                    <img src="{% static './img/avg-icons/sqft.svg' %}" alt="sqft icon">
+                                    <h5>sqft: {{ listing.sqft}}</h5>
+                                </div>
+                                <div>
+                                    <img src="{% static './img/avg-icons/garage.svg' %}" alt="garage icon">
+                                    <h5>garage: {{ listing.garage }}</h5>
+                                </div>
+                                <div>
+                                    <img src="{% static './img/avg-icons/bedrooms.svg' %}" alt="bedrooms icon">
+                                    <h5>bedrooms: {{ listing.bedrooms }}</h5>
+                                </div>
+                                <div>
+                                    <img src="{% static './img/avg-icons/bathrooms.svg' %}" alt="bathrooms icon">
+                                    <h5>bathrooms: {{listing.bathrooms}}</h5>
+                                </div>
+                            </div>
+                            <div class="owner-section">
+                                <div>
+                                    <img src="{% static 'img/owr-icons/user.svg' %}" alt="">
+                                    <h5>{{ listing.realtor }}</h5>
+                                </div>
+                                <div>
+                                    <img src="{% static 'img/owr-icons/time.svg' %}" alt="">
+                                    <h5>{{ listing.list_date | timesince }}</h5>
+                                </div>
+                            </div>
+                            <div class="button-section">
+                                <a href="{% url 'listing' listing.id %}">
+                                    <button type="button">more info</button>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor%}
+                {% else %}
+                    <p>No listings available</p>
+                {% endif%}
+            </ul>
+            {% if listings.has_other_pages %}
+            <div class="pagination-section">
+                {% if listings.has_previous %}
+                        <a href="?page={{listings.previous_page_number}}">
+                            <button>prev</button>
+                        </a>
+                {% else%}
+                        <a class="disabled">
+                            <button class="disabled-btn">prev</button>
+                        </a>
+                {% endif%}
+                <div class="current-page">{{listings.number}}</div>
+                {% if listings.has_next %}
+                        <a href="?page={{listings.next_page_number}}">
+                            <button>next</button>
+                        </a>
+                {% else%}
+                    
+                        <a class="disabled">
+                            <button class="disabled-btn">next</button>
+                        </a>
+                    </button>
+                {% endif%}
+            </div>
+            {% endif %}
+        </div>
+        
+    </div>
+
+
+
+{% endblock %}

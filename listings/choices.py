@@ -1,0 +1,57 @@
+bedroom_choices = {
+  '1':1,
+  '2':2,
+  '3':3,
+  '4':4,
+  '5':5
+  }
+
+price_choices = {
+  '1000000':'under 10lakh',
+  '2000000':'under 20lakh',
+  '3000000':'under 30lakh',
+  '4000000':'under 40lakh',
+  '5000000':'under 50lakh',
+  '6000000':'under 60lakh',
+  '7000000':'under 70lakh',
+  '8000000':'under 80lakh',
+  '9000000':'under 90lakh',
+  '10000000':'over 1 crore',
+}
+
+state_choices = {
+        'Andhra Pradesh': 'Andhra Pradesh',
+        'Arunachal Pradesh': 'Arunachal Pradesh',
+        'Assam': 'Assam',
+        'Bihar': 'Bihar',
+        'Chhattisgarh': 'Chhattisgarh',
+        'Goa': 'Goa',
+        'Gujarat': 'Gujarat',
+        'Haryana': 'Haryana',
+        'Himachal Pradesh': 'Himachal Pradesh',
+        'ammu and Kashmir': 'Jammu and Kashmir',
+        'Jharkhand': 'Jharkhand',
+        'Karnataka': 'Karnataka',
+        'Kerala': 'Kerala',
+        'Madhya Pradesh': 'Madhya Pradesh',
+        'Maharashtra': 'Maharashtra',
+        'Manipur': 'Manipur',
+        'Meghalaya': 'Meghalaya',
+        'Mizoram': 'Mizoram',
+        'Nagaland': 'Nagaland',
+        'Orissa': 'Orissa',
+        'Punjab': 'Punjab',
+        'Rajasthan': 'Rajasthan',
+        'Sikkim': 'Sikkim',
+        'Tamil Nadu': 'Tamil Nadu',
+        'Tripura': 'Tripura',
+        'Uttarakhand': 'Uttarakhand',
+        'Uttar Pradesh': 'Uttar Pradesh',
+        'West Bengal': 'West Bengal',
+        'ndaman and Nicobar Islands': 'Andaman and Nicobar Islands',
+        'Dadra and Nagar Haveli': 'Dadra and Nagar Haveli',
+        'Daman and Diu': 'Daman and Diu',
+        'Delhi': 'Delhi',
+        'Lakshadweep': 'Lakshadweep',
+        'Pondicherry': 'Pondicherry'
+}

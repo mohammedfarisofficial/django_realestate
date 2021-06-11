@@ -1,0 +1,62 @@
+{% load static %}
+
+<div class="navbar">
+    <div class="navbar-left-section">
+        <div class="navbar-logo">
+            <div class="navbar-logo-image">
+                <img src="{% static 'img/logo.png' %}" alt="logo">
+            </div>
+            <div class="navbar-links">
+                
+                <a 
+                 {% if '/' == request.path %}
+                 class="navlink active"
+                 {% else %}
+                 class="navlink"
+                 {% endif %} 
+                href="{% url 'index' %}">Home</a>
+                <a
+                {% if 'about' in request.path %}
+                class="navlink active"
+                {% else %}
+                class="navlink"
+                {% endif %}  
+                href="{% url 'about' %}">About</a>
+                <a 
+                {% if 'listings' in request.path %}
+                class="navlink active"
+                {% else %}
+                class="navlink"
+                {% endif %} 
+                href="{% url 'listings' %}">Featured listing</a>
+            </div>
+        </div>
+        <div class="navbar-pages"></div>
+    </div>
+    <div class="navbar-right-section">
+        {% if user.is_authenticated %}
+            <a
+            {% if 'dashboard' in request.path %}
+                class="active"
+            {% endif %} 
+            href="{% url 'dashboard' %}"> welcome {{ user.username }} (dashboard)</a>
+            <a href="javascript:{document.getElementById('logout').submit()}">logout</a>
+            <form action="{% url 'logout' %}" method="POST" id="logout" >
+                {% csrf_token %}
+                <input type="hidden" >
+            </form>
+        {% else %}
+            <a
+            {% if 'login' in request.path %}
+                class="active"
+            {% endif %}
+            href="{% url 'login' %}"><span>have an account?</span>login</a>
+            <a
+            {% if 'register' in request.path %}
+                class="active"
+            {% endif %} 
+            href="{% url 'register' %}"><button>create</button></a>
+            
+        {% endif%}
+    </div>
+</div>
